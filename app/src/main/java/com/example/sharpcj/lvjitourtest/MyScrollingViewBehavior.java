@@ -29,6 +29,10 @@ public class MyScrollingViewBehavior extends android.support.design.widget.AppBa
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
         mTargetTop = child.getTop();
+        mToolBar = (Toolbar) dependency.findViewById(R.id.toolBar);
+        mIvSearch = (ImageView) dependency.findViewById(R.id.iv_search);
+        mTvTitle = (TextView) dependency.findViewById(R.id.tv_title);
+
 
         Log.i(TAG, "----layoutDependsOn---mTargetTop--" + mTargetTop);
         return super.layoutDependsOn(parent, child, dependency);
@@ -36,11 +40,7 @@ public class MyScrollingViewBehavior extends android.support.design.widget.AppBa
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
-
-        mToolBar = (Toolbar) dependency.findViewById(R.id.toolBar);
-        mIvSearch = (ImageView) dependency.findViewById(R.id.iv_search);
-        mTvTitle = (TextView) dependency.findViewById(R.id.tv_title);
-
+        
         int offset = child.getTop();
         float temp = (1 - 1.0f * (offset - 147) / (525 - 147));
         Log.i(TAG, "----onDependentViewChanged----" + offset);
